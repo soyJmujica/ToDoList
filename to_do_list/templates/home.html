@@ -1,0 +1,375 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="accordion" id="accordionExample">
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle = "collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Deal's info
+                </button>
+            </h2>
+        </div>
+        <div class="collapse show" id="collapseOne" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+                <label for="property">Property Address: </label><input type="text" name="property" id="property"><br>
+                <label for="buyer_seller">Buyer/Seller: </label><select name="buyer_seller" id="buyer_seller">
+                    <option value selected>----------</option>
+                    <option value="Buyer">Buyer</option>
+                    <option value="Seller">Seller</option>
+                </select>
+                <!--label for="flex_organic">Type of Lead: </label><select name="flex_organic" id="flex_organic">
+                    <option value selected>----------</option>
+                    <option value="Flex">Flex</option>
+                    <option value="Organic">Organic</option>
+                    <option value="Team Lead">Team Lead</option>
+                </select-->
+                <span class="buyer" style="display: none;">
+                  <label for="harbor_insurance">Harbor Insurance: </label><input type="checkbox" name="harbor_insurance" id="harbor_insurance">
+                  <label for="financing">Financing: </label><input type="checkbox" name="financing" id="financing">  
+                </span>              
+                <label for="inspection">Inspection: </label><input type="checkbox" name="inspection" id="inspection"><br>                
+                <label for="effective_date">Effective Date: </label><input type="date" name="effective_date" id="effective_date">
+                <label for="escrow_date">Escrow Date: </label><input type="date" name="escrow_date" id="escrow_date">
+                <br>
+                <label for="escrow">Escrow: </label><input type="number" name="escrow" id="escrow" placeholder="USD" step="0.01"><br>
+                <div class="financing" style="display: none;">
+                    <label for="financing_date">Financing Deadline: </label><input type="date" name="financing_date" id="financing_date">
+                </div>
+                <div class="inspection" style="display: none;">
+                    <label for="inspection_date">Inspection Deadline: </label><input type="date" name="inspection_date" id="inspection_date">
+                </div>
+
+                <div class="seller" style="display: none;">
+                    <label for="seller_firstname">Seller's First Name</label><input type="text" name="seller_firstname" id="seller_firstname" ><br>
+                    <label for="seller_lastname">Seller's Last Name</label><input type="text" name="seller_lastname" id="seller_lastname">
+                </div>
+                <div class="buyer" style="display: none;">
+                    <label for="buyer_firstname">Buyer's First Name</label><input type="text" name="buyer_firstname" id="buyer_firstname"><br>
+                    <label for="buyer_lastname">Buyer's Last Name</label><input type="text" name="buyer_lastname" id="buyer_lastname"><br>
+                    <label for="buyer_phone">Buyer's Phone Number</label><input type="tel" name="buyer_phone" id="buyer_phone">
+                    <label for=""></label>                    
+                </div>
+                <label for="title_name">Title Company</label><input type="text" name="title_name" id="title_name">
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header" id="headingTwo">
+            <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Congratulations Email
+                </button>
+            </h2>
+        </div>
+        <div class="collapse" id="collapseTwo" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div class="card-body">
+                <div class="buyer" style="display: none;">
+                    <h3> Subject: Congratulaions!! We are under contract on <span class="address">property_address</span>!!!</h3>
+                    <h4>Hi <span id="buyer_first_name">buyer_name</span> </h4>
+                    <p>
+                        CONGRATULATIONS on the acceptance of your contract at <span class="address">property_address</span> <br>
+                        <strong>First Thing First:</strong> ~We need to wire escrow money or drop the check off to <span id="title_company">title_company</span> on or before <span id="escrow_deadline">escrow_date</span>, in the amount of $<span id="escrow_amount">escrow_amount</span>.  On the memo section of the check please write "EMD for <span class="address">property_address</span>". Escrow money will go towards your closing costs.  Escrow money is refundable during our inspection period. <strong style="color: red;">ALSO VERY IMPORTANT Wire Fraud is very real.  So if you ever wire money to title, always call Title </strong> <strong style="color: blue;"> to confirm exact routing and account numbers for the wire. Title will never change these numbers.  Call and verify every time you wire.</strong> 
+                    </p>
+                    <p style="color: blueviolet;">Add title Screenshot here</p>
+                    <p>
+                        <strong style="color: blue;">Title</strong>, please see the executed contract.  Please reach out to <span id="buyer_name">buyer_name</span> directly for any questions you might have at <span id="phone_number">phone_number</span><br>
+                        <strong style="color: blue;"><span id="harbor" style="display: none;">Harbor </span> Insurance</strong>, please send us a homeowner policy quote for a primary residence and keep costs as low as possible. <br>
+                        <strong style="color: blue;">Inspection Team</strong>, please share pricing for a home inspection, wind mit "if there are credits available", and 4PT. <br>
+                        </p>
+                        <p>
+                            <strong style="font-size: 14px;">Chain of Events:</strong><br>
+                        
+                        <strong>Documents</strong> <br>
+                        We will need you to sign some documents throughout the process. I will be sending you emails requesting your signatures through our document management system. If you have any questions regarding this system please don't hesitate to ask. You will be signing the forms digitally and once you save the form it will automatically notify us.  <br>
+                        <span class="inspection_checked" style="display: none;">
+                         <strong>Inspection Period</strong><br>
+                        We have an inspection period that expires on <span class="inspection_deadline">inspection_date</span>. We are currently in the process of setting this up. This is an exciting time, so some of our buyers often choose to attend the inspection. This will give you a chance to preview the home again and review the findings with the inspector. The typical timeframe for an inspection is 2 1/2 to 3 hours. Feel free to come by towards the end if you’d prefer, in order to review and discuss findings, or of course you can have us video with you towards the end if you can not attend.    
+                        </span>
+                        <span id="variable" style="display: none;">
+                        <strong>Financing Period</strong><br>
+                        The financing period will end on <span id="financing_deadline">financing_deadline</span>. To ensure a smooth transition and timely completion of the transaction, we kindly request that all necessary arrangements, including the finalization of loan approvals, inspection reports, and any outstanding documentation, be completed within this timeframe. <br>
+                        <strong>Appraisal</strong><br>
+                        An appraisal of the property will be completed while the loan is in underwriting. Once the appraisal report is ready, your lender will review for value and any possible “conditions” to be cleared. We will work on this together, so no worries!<br>
+                      </span>
+                        <strong>Utilities</strong><br>
+                        Please contact all utility companies and ask them to transfer the service out into your name on the day of closing.
+                        This is also a good time to notify the post office of your change of address as well. 
+                        <br>
+                        <strong>Walk-thru</strong><br>
+                        We will conduct a final walk-thru before closing. Our walk-through is typically the day before or the day of closing. 
+                        <br>
+                        <strong>Closing</strong><br>
+                        Your closing will be at the title company referenced above. You will receive an email from us prior to this date confirming all the pertinent information. <br>
+                        
+                        <strong style="background: yellow;">***Please let us know if you prefer to close in person or if you will be requiring a Mobile Closer or Mail Away.***</strong> <br>
+                        
+                        <strong>An exact time is typically scheduled 3-5 days before closing. It takes about an hour to complete so please plan ahead for time off work.</strong><br>
+                        
+                        Thank you! <br>
+                        <strong>Please be sure to <i>"reply all."</i></strong>
+                     
+                        </p>
+                                           
+                </div>
+                <div class="seller" style="display: none;">
+                    <h3> Subject: Congratulaions!! We are under contract on <span class="address">property_address</span>!!!</h3>
+                    <h4>Hi <span id="seller_first_name">buyer_name</span> </h4>
+                    <p>
+                        Below are several milestones that we need to get past as we get closer to the sale of your property. We have put together a list of events and activities that will help explain the sale process. 
+                    </p>
+                    <p>Important items that you should keep in mind:</p>
+                    <p>
+                        <strong>Documents-</strong> <br>
+                        We will need you to sign some documents throughout the process. I will be sending you emails requesting your signatures through our document management system. If you have any questions regarding this system please don't hesitate to ask. You will be signing the forms digitally and once you save the form it will automatically notify us.
+                    </p>
+                    <p>
+                        <span class="inspection_checked" style="display: none;">
+                            <strong>Inspection Period-</strong><br> 
+                           The buyer has an inspection period that expires on <span class="inspection_deadline">inspection_date</span>. They are currently in the process of setting this up. Please make sure that all access doors for areas such as the attic space are unlocked, all equipment is accessible, and pets are put away etc. <br>
+                           This is an exciting time for the buyers and they often choose to attend the inspection. This will give them a chance to preview the home again and review the findings with the inspector, if you are able to, we suggest you leave the property during the inspection. The typical time frame for an inspection is 2 1/2 to 3 hours.    
+                           </span>
+                    </p>
+                    <p>
+                        <strong>Appraisal-</strong><br>
+                        An appraisal of the property will be completed prior to closing. I will reach out to confirm/schedule the appraisal with you.
+                    </p>
+                    <p> 
+                        <strong>Utilities-</strong><br>
+                        Please contact all utility companies and ask them to transfer the service out of your name on the day after the closing date.
+                        This is also a good time to notify the post office of your change of address as well. You will also need to reach out to your homeowner's insurance company to cancel your insurance policy for the day after closing.
+                    </p>
+                    <p>
+                        <strong>Walk-thru</strong><br>
+                        The buyer will do a final walk-thru before closing. The buyer typically does the walk-through the day before or the day of closing. Please make sure everything is vacated and the house is broom-swept clean.
+                    </p>
+                    <p> 
+                        <strong>Closing:</strong><br>
+                        Your closing will be at the title company referenced above. You will receive an email from us prior to this date confirming all the pertinent information. 
+                        
+                    </p>
+                    <p>
+                        <strong style="background: yellow;">***Please let us know if you prefer to close in person or if you will be requiring a Mobile Closer or Mail Away.***</strong> <br>
+                        <strong>An exact time is typically scheduled 3-5 days before closing. It takes about an hour to complete so please plan ahead for time off work.</strong><br>
+                    </p>
+                </div>
+            </div>
+        </div> 
+    </div>
+    <div class="card">
+        <div class="card-header" id="headingThree">
+            <h2 class="mb-0">
+                <button class="btn btn-block text-left btn-link" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    To-Do List
+                </button>
+            </h2>
+        </div>
+        <div class="collapse" id="collapseThree" aria-labelledby="headingThree" data-parent="#accordionExample">
+            <div class="card-body">
+                <ul>
+                    <li>
+                       <label for="notion">Notion: </label><input type="checkbox" name="notion" id="notion"> 
+                    </li>
+                    <li>
+                        <label for="congrats">Congrats Email: </label><input type="checkbox" name="congrats" id="congrats">
+                    </li>
+                    <li>
+                        <label for="reminder">Email Reminder Set: </label><input type="checkbox" name="reminder" id="reminder">
+                    </li>
+                    <li>
+                        <label for="calendar">Calendar Invites: </label><input type="checkbox" name="calendar" id="calendar">
+                    </li>
+                    <li>
+                        <label for="flex">Flex Tracker: </label><input type="checkbox" name="flex" id="flex">
+                    </li>
+                    <li>
+                        <label for="loop">Loop Updated: </label><input type="checkbox" name="loop" id="loop">
+                    </li>                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // funcion 1
+
+    const financingCheckbox = document.getElementById('financing');
+    const inspectionCheckbox = document.getElementById('inspection');
+    const harborCheckbox = document.getElementById('harbor_insurance');
+    const buyerSeller = document.getElementById('buyer_seller');
+    const variableSpan = document.getElementById('variable');
+    const harborSpan = document.getElementById('harbor');
+    const inspectionSpan = document.querySelectorAll('.inspection_checked');
+    const inspectionDate = document.querySelectorAll('.inspection');
+    const financingDate = document.querySelectorAll('.financing');
+    const buyers = document.querySelectorAll('.buyer');
+    const sellers = document.querySelectorAll('.seller');
+
+
+    financingCheckbox.addEventListener('change', function(){
+        if (this.checked){
+            variableSpan.style.display = 'block'; //show span
+            for (const financing of financingDate ){
+                financing.style.display = 'block';
+            }            
+        } else {
+            variableSpan.style.display = 'none'; // hide span
+            for (const financing of financingDate ){
+                financing.style.display = 'none';
+            }
+        }
+    });
+    inspectionCheckbox.addEventListener('change', function(){
+        if (this.checked){
+            for (const span of inspectionSpan){
+                span.style.display = 'block';
+            }
+            for (const inspection of inspectionDate){
+                inspection.style.display = 'block';
+            }
+        } else {
+            for(const span of inspectionSpan){
+                span.style.display = 'none';
+            }for (const inspection of inspectionDate){
+                inspection.style.display = 'none';
+            }
+        }
+    });
+    harborCheckbox.addEventListener('change', function(){
+        if(this.checked){
+            harborSpan.style.display = "inline-block";
+        } else {
+            harborSpan.style.display = 'none';
+        }
+    });
+    buyerSeller.addEventListener('change',function(){
+        if(this.value == 'Buyer'){
+            for (const buyer of buyers){
+                buyer.style.display = 'block';
+            }
+            for (const seller of sellers){
+                seller.style.display = 'none';
+            }
+        }else if (this.value == "Seller"){
+            for (const seller of sellers){
+                seller.style.display = 'block';
+            }
+            for (const buyer of buyers){
+                buyer.style.display = 'none';
+            }
+        }else{
+            for(const buyer of buyers){
+                buyer.style.display = 'none';
+            }
+            for(const seller of sellers){
+                seller.style.display = 'none';
+            }
+        }
+    });
+
+    // funcion 2
+    const buyerFirstName = document.getElementById('buyer_first_name');
+    const buyerFullName = document.getElementById('buyer_name');
+    const sellerFirstName = document.getElementById('seller_first_name');
+    const titleCompany = document.getElementById('title_company');
+    const escrowDeadline = document.getElementById('escrow_deadline');
+    const escrowAmount = document.getElementById('escrow_amount');
+    const buyerPhone = document.getElementById('phone_number');
+    const inspectionDeadline = document.querySelectorAll('.inspection_deadline');
+    const financingDeadline = document.getElementById('financing_deadline');
+    const address = document.querySelectorAll('.address');
+
+    document.getElementById('buyer_firstname').addEventListener('input', updateEmail);
+    document.getElementById('buyer_lastname').addEventListener('input', updateEmail);
+    document.getElementById('buyer_phone').addEventListener('input', updateEmail);
+    document.getElementById('seller_firstname').addEventListener('input', updateEmail);
+    document.getElementById('seller_lastname').addEventListener('input', updateEmail);
+    document.getElementById('title_name').addEventListener('input', updateEmail);
+    document.getElementById('escrow_date').addEventListener('input', updateEmail);
+    document.getElementById('escrow').addEventListener('input', updateEmail);
+    document.getElementById('inspection_date').addEventListener('input', updateEmail);
+    document.getElementById('financing_date').addEventListener('input', updateEmail);
+    document.getElementById('property').addEventListener('input', updateEmail);
+
+    function formatDate(dateString){
+        const date = new Date(dateString)
+        date.setMinutes(date.getMinutes()+date.getTimezoneOffset())
+        const dia = date.getDate()
+        const mes = date.toLocaleDateString('en-US', {month:'long'})
+        const año = date.getFullYear()
+        let formattedDate;
+        if (dia == 1 || dia == 21 || dia == 31) {
+            formattedDate = mes + " " + dia + "st" + ", " + año;
+        } else if (dia == 2 || dia == 22) {
+            formattedDate = mes + " " + dia + "nd" + ", " + año;
+        } else if (dia == 3 || dia == 23) {
+            formattedDate = mes + " " + dia + "rd" + ", " + año;
+        } else {
+            formattedDate = mes + " " + dia + "th" + ", " + año;
+        }
+        return formattedDate;
+        
+    };
+    function formatNumberWithCommas(number) {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    function updateEmail(){
+        buyerFirstNameValue = document.getElementById('buyer_firstname').value;
+        buyerLastNameValue = document.getElementById('buyer_lastname').value;
+        buyerPhoneValue = document.getElementById('buyer_phone').value;
+        sellerFirstNameValue = document.getElementById('seller_firstname').value;
+        sellerLastNameValue = document.getElementById('seller_lastname').value;     
+        title_nameValue = document.getElementById('title_name').value;        
+        escrow_dateValue = document.getElementById('escrow_date').value;
+        inspectionValue = document.getElementById('inspection_date').value;
+        financingValue = document.getElementById('financing_date').value;
+        escrowValue = document.getElementById('escrow').value;
+        addressValue = document.getElementById('property').value; 
+        
+
+        
+        buyerFirstName.textContent = buyerFirstNameValue;
+        buyerFullName.textContent = buyerFirstNameValue+" "+buyerLastNameValue;
+        buyerPhone.textContent = buyerPhoneValue;
+        titleCompany.textContent = title_nameValue;
+        escrowDeadline.textContent = formatDate(escrow_dateValue);
+        for(const deadline of inspectionDeadline){
+            deadline.textContent = formatDate(inspectionValue);
+        }
+        financingDeadline.textContent = formatDate(financingValue);
+        escrowAmount.textContent = formatNumberWithCommas(escrowValue);
+        for(const value of address){
+            value.textContent = addressValue
+        };
+        sellerFirstName.textContent = sellerFirstNameValue;
+
+    };
+
+    //funcion 3
+    function transactionFinished(){
+        var notionChecked = document.getElementById('notion').checked;
+        var congratsChecked = document.getElementById('congrats').checked;
+        var reminderChecked = document.getElementById('reminder').checked;
+        var calendarChecked = document.getElementById('calendar').checked;
+        var flexChecked = document.getElementById('flex').checked;
+        var loopChecked = document.getElementById('loop').checked;
+
+
+        if (notionChecked && congratsChecked && reminderChecked && calendarChecked && flexChecked && loopChecked){
+            alert('proccess completed for '+addressValue)
+        }
+
+    };
+    document.getElementById('notion').addEventListener('change',transactionFinished);
+    document.getElementById('congrats').addEventListener('change', transactionFinished);
+    document.getElementById('reminder').addEventListener('change', transactionFinished);
+    document.getElementById('calendar').addEventListener('change', transactionFinished);
+    document.getElementById('flex').addEventListener('change', transactionFinished);
+    document.getElementById('loop').addEventListener('change', transactionFinished);
+
+    
+
+</script>
+{% endblock %}
