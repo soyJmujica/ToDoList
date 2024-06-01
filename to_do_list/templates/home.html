@@ -208,6 +208,36 @@
     const sellers = document.querySelectorAll('.seller');
 
 
+    buyerSeller.addEventListener('change',function(){
+        if(this.value == 'Buyer'){
+            for (const buyer of buyers){
+                buyer.style.display = 'block';
+            }
+            for (const seller of sellers){
+                seller.style.display = 'none';
+            }
+        }else if (this.value == "Seller"){
+            for (const seller of sellers){
+                seller.style.display = 'block';
+                financingCheckbox.checked = false;
+                variableSpan.style.display = 'none'; // hide span
+                for (const financing of financingDate ){
+                financing.style.display = 'none';
+            }                
+            }
+            for (const buyer of buyers){
+                buyer.style.display = 'none';
+            }
+        }else{
+            for(const buyer of buyers){
+                buyer.style.display = 'none';
+            }
+            for(const seller of sellers){
+                seller.style.display = 'none';
+            }
+        }
+    });
+
     financingCheckbox.addEventListener('change', function(){
         if (this.checked){
             variableSpan.style.display = 'block'; //show span
@@ -244,30 +274,7 @@
             harborSpan.style.display = 'none';
         }
     });
-    buyerSeller.addEventListener('change',function(){
-        if(this.value == 'Buyer'){
-            for (const buyer of buyers){
-                buyer.style.display = 'block';
-            }
-            for (const seller of sellers){
-                seller.style.display = 'none';
-            }
-        }else if (this.value == "Seller"){
-            for (const seller of sellers){
-                seller.style.display = 'block';
-            }
-            for (const buyer of buyers){
-                buyer.style.display = 'none';
-            }
-        }else{
-            for(const buyer of buyers){
-                buyer.style.display = 'none';
-            }
-            for(const seller of sellers){
-                seller.style.display = 'none';
-            }
-        }
-    });
+   
 
     // funcion 2
     const buyerFirstName = document.getElementById('buyer_first_name');
