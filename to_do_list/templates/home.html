@@ -2,6 +2,7 @@
 
 {% block content %}
 <div class="accordion" id="accordionExample">
+    <button class="btn btn-warning" id="limpiar-inputs">Clear inputs <i class="fa fa-eraser"></i></button>
     <div class="card">
         <div class="card-header" id="headingOne">
             <h2 class="mb-0">
@@ -377,6 +378,22 @@
     document.getElementById('loop').addEventListener('change', transactionFinished);
 
     
+    // Funcion 3
+
+  function limpiarInputs() {
+    var inputs = document.querySelectorAll('input');
+    for (var i = 0; i < inputs.length; i++) {
+        if (inputs[i].type === "checkbox"){
+            inputs[i].checked = false;  //Desmarca el checkbox
+        } else {
+            inputs[i].value = '';// Limpia el valor de los inputs de texto, email y password
+        }
+      
+    }
+  }
+
+  document.getElementById('limpiar-inputs').addEventListener('click', limpiarInputs);
+
 
 </script>
 {% endblock %}
