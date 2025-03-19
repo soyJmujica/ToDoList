@@ -5,7 +5,13 @@ body{
 
 
 }
-label{
+label {
+    position: relative;
+    display: inline-block;
+  }
+  
+  label::after {
+    content: attr(data-tooltip);
     visibility: hidden;
     width: 120px;
     background-color: black;
@@ -22,13 +28,10 @@ label{
     transition: opacity 0.3s;
   }
   
-  label:hover .tooltiptext {
+  label:hover::after {
     visibility: visible;
     opacity: 1;
   }
-label{
-    margin: 10px;
-}
 
 .container{
     position: relative;
