@@ -5,12 +5,12 @@ body{
 
 
 }
-label {
+label.to-do-list {
     position: relative;
     display: inline-block;
   }
   
-  label::after {
+  label.to-do-list::after {
     content: attr(data-tooltip);
     visibility: hidden;
     width: 120px;
@@ -28,7 +28,7 @@ label {
     transition: opacity 0.3s;
   }
   
-  label:hover::after {
+  label.to-do-list:hover::after {
     visibility: visible;
     opacity: 1;
   }
