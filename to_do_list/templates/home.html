@@ -15,7 +15,7 @@
             <div class="card-body">
                 <label for="property">Property Address: </label><input type="text" name="property" id="property"><br>
                 <label for="buyer_seller">Buyer/Seller: </label><select name="buyer_seller" id="buyer_seller">
-                    <option value selected>----------</option>
+                    <option value=" " selected>----------</option>
                     <option value="Buyer">Buyer</option>
                     <option value="Seller">Seller</option>
                 </select>
@@ -26,7 +26,6 @@
                     <option value="Team Lead">Team Lead</option>
                 </select-->
                 <span class="buyer" style="display: none;">
-                  <label for="harbor_insurance">Harbor Insurance: </label><input type="checkbox" name="harbor_insurance" id="harbor_insurance">
                   <label for="financing">Financing: </label><input type="checkbox" name="financing" id="financing">  
                 </span>              
                 <label for="inspection">Inspection: </label><input type="checkbox" name="inspection" id="inspection"><br>                
@@ -75,7 +74,8 @@
                     <p style="color: blueviolet;">Add title Screenshot here</p>
                     <p>
                         <strong style="color: blue;">Title</strong>, please see the executed contract.  Please reach out to <span id="buyer_name">buyer_name</span> directly for any questions you might have at <span id="phone_number">phone_number</span><br>
-                        <strong style="color: blue;"><span id="harbor" style="display: none;">Harbor </span> Insurance</strong>, please send us a homeowner policy quote for a primary residence and keep costs as low as possible. <br>
+                        <strong>Please provide a copy of the EMD receipt once available for our records</strong> <br>
+                        <strong style="color: blue;">Comparion Insurance</strong>, please send us a homeowner policy quote for a primary residence and keep costs as low as possible. <br>
                         <span class="inspection_checked"><strong style="color: blue;">Inspection Team</strong>, please share pricing for a home inspection, wind mit "if there are credits available", and 4PT.</span> <br>
                         </p>
                         <p>
@@ -184,8 +184,11 @@
                         <label for="flex">Flex Tracker: </label><input type="checkbox" name="flex" id="flex">
                     </li>
                     <li>
-                        <label for="loop">Loop Updated: </label><input type="checkbox" name="loop" id="loop">
-                    </li>                    
+                        <label for="loop">Skyslope Updated: </label><input type="checkbox" name="loop" id="loop">
+                    </li> 
+                    <li>
+                        <label for="slack">Slack List</label> <input type="checkbox" name="slack" id="slack">
+                    </li>                   
                 </ul>
                 
             </div>
@@ -198,10 +201,8 @@
 
     const financingCheckbox = document.getElementById('financing');
     const inspectionCheckbox = document.getElementById('inspection');
-    const harborCheckbox = document.getElementById('harbor_insurance');
     const buyerSeller = document.getElementById('buyer_seller');
     const variableSpan = document.getElementById('variable');
-    const harborSpan = document.getElementById('harbor');
     const inspectionSpan = document.querySelectorAll('.inspection_checked');
     const inspectionDate = document.querySelectorAll('.inspection');
     const financingDate = document.querySelectorAll('.financing');
@@ -267,15 +268,7 @@
                 inspection.style.display = 'none';
             }
         }
-    });
-    harborCheckbox.addEventListener('change', function(){
-        if(this.checked){
-            harborSpan.style.display = "inline-block";
-        } else {
-            harborSpan.style.display = 'none';
-        }
-    });
-   
+    });   
 
     // funcion 2
     const buyerFirstName = document.getElementById('buyer_first_name');
@@ -363,9 +356,10 @@
         var calendarChecked = document.getElementById('calendar').checked;
         var flexChecked = document.getElementById('flex').checked;
         var loopChecked = document.getElementById('loop').checked;
+        var slackChecked = document.getElementById('slack').checked;
 
 
-        if (notionChecked && congratsChecked && reminderChecked && calendarChecked && flexChecked && loopChecked){
+        if (notionChecked && congratsChecked && reminderChecked && calendarChecked && flexChecked && loopChecked && slackChecked){
             alert('proccess completed for '+addressValue)
         }
 
@@ -376,6 +370,7 @@
     document.getElementById('calendar').addEventListener('change', transactionFinished);
     document.getElementById('flex').addEventListener('change', transactionFinished);
     document.getElementById('loop').addEventListener('change', transactionFinished);
+    document.getElementById('slack').addEventListener('change', transactionFinished)
 
     
     // Funcion 4
@@ -385,6 +380,8 @@
     for (var i = 0; i < inputs.length; i++) {
         if (inputs[i].type === "checkbox"){
             inputs[i].checked = false;  //Desmarca el checkbox
+        }else if (inputs[i].tagName === "SELECT") {
+        inputs[i].value = " "; // Cambia el valor del select    
         } else {
             inputs[i].value = '';// Limpia el valor de los inputs de texto, email y password
         }
