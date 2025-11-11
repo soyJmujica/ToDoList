@@ -99,3 +99,9 @@ input[type='checkbox']{
 .card .collapse .card-body{
     margin-right: 30px;
 }
+
+.card-body .lista_EMD{
+    margin-left: 10%;
+
+
+}
