@@ -33,6 +33,7 @@
                 <label for="escrow_date">Escrow Date: </label><input type="date" name="escrow_date" id="escrow_date">
                 <br>
                 <label for="escrow">Escrow: </label><input type="number" name="escrow" id="escrow" placeholder="USD" step="0.01"><br>
+                <label for="transaction_fee">Transaction Fee: </label><input type="number" name="transaction_fee" id="transaction_fee" placeholder="USD" step="0.01"><br>
                 <div class="financing" style="display: none;">
                     <label for="financing_date">Financing Deadline: </label><input type="date" name="financing_date" id="financing_date">
                 </div>
@@ -90,7 +91,8 @@
                     <p style="color: blueviolet;">Add title Screenshot here</p>
                     <p>
                         <strong style="color: blue;">Title</strong>, please see the executed contract attached.  Please reach out to <span id="buyer_name">buyer_name</span> (Buyer(s)) directly for any instructions or questions you might have at <span id="phone_number">phone_number</span> / <span id="email">emai_address</span><br>
-                        <strong>Please provide a copy of the EMD receipt once available for our records</strong>; Please be advised that there is a Transaction Broker Fee of <strong>[Monto]</strong> being charged to the buyer at closing. <br>
+                        <strong>Please provide a copy of the EMD receipt once available for our records</strong>; Please be advised that there is a Transaction Broker Fee of <strong>$<span id="trans_fee_buyer">monto</span></strong> being charged to the buyer at closing. <br>
+
                         <strong style="color: blue;">Insurance Team</strong>, please send us a homeowner policy quote for a primary residence and keep costs as low as possible. <br>
                         <span class="inspection_checked"><strong style="color: blue;">Inspection Team</strong>, please share pricing for a home inspection, wind mit "if there are credits available", and 4PT.</span> <br>
                         </p>
@@ -167,7 +169,7 @@
                     </p>
                     <p> 
                         <strong>Title:</strong><br>
-                        please be advised that there is a Transaction Broker Fee of <strong>[Monto] </strong>being charged to the seller at closing. 
+                        please be advised that there is a Transaction Broker Fee of <strong>$<span id="trans_fee_seller">monto</span> </strong>being charged to the seller at closing. 
                         
                     </p>
                     <p>
@@ -298,6 +300,8 @@
     const titleCompany = document.getElementById('title_company');
     const escrowDeadline = document.getElementById('escrow_deadline');
     const escrowAmount = document.getElementById('escrow_amount');
+    const transFeeBuyer = document.getElementById('trans_fee_buyer');
+    const transFeeSeller = document.getElementById('trans_fee_seller');
     const buyerPhone = document.getElementById('phone_number');
     const buyerEmail = document.getElementById('email');
     const inspectionDeadline = document.querySelectorAll('.inspection_deadline');
@@ -316,6 +320,7 @@
     document.getElementById('inspection_date').addEventListener('input', updateEmail);
     document.getElementById('financing_date').addEventListener('input', updateEmail);
     document.getElementById('property').addEventListener('input', updateEmail);
+    document.getElementById('transaction_fee').addEventListener('input',updateEmail);
 
     function formatDate(dateString){
         const date = new Date(dateString)
@@ -351,7 +356,9 @@
         inspectionValue = document.getElementById('inspection_date').value;
         financingValue = document.getElementById('financing_date').value;
         escrowValue = document.getElementById('escrow').value;
-        addressValue = document.getElementById('property').value; 
+        addressValue = document.getElementById('property').value;
+        transFeeBuyerValue = document.getElementById('transaction_fee').value;
+        transFeeSellerValue = document.getElementById('transaction_fee').value;
         
 
         
@@ -370,6 +377,8 @@
             value.textContent = addressValue
         };
         sellerFirstName.textContent = sellerFirstNameValue;
+        transFeeBuyer.textContent = transFeeBuyerValue;
+        transFeeSeller.textContent = transFeeSellerValue;
 
     };
 
